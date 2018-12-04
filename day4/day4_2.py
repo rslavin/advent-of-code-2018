@@ -27,5 +27,5 @@ for k, v in lines:
     elif end is None:
         end = int(re.search(r":(\d+)", k).group(1))
 
-g = max(minutes.keys(), key=(lambda i: sum(minutes[i])))
+g = max(minutes.keys(), key=(lambda i: max(minutes[i])))
 print(minutes[str(g)].index(max(minutes[str(g)])) * int(g))

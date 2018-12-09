@@ -4,7 +4,7 @@ import re
 children = {}
 steps = set()
 for line in sys.stdin:
-    mo = re.search(r"Step (.).*(.) can", line)
+    mo = re.search(r"p (.) m.*(.) c", line)
     if mo.group(1) not in children:
         children[mo.group(1)] = []
     children[mo.group(1)].append(mo.group(2))
@@ -13,11 +13,11 @@ for line in sys.stdin:
 complete = []
 queue = sorted(list(steps) + [x for x in children if x not in [y for sublist in children.values() for y in sublist]])
 ready = []
-
 i = 0
 time = 0
 workers = [0] * 5
 slots = [""] * 5
+
 while True:
     for w in range(len(workers)):
         if not workers[w] and len(ready):
@@ -27,7 +27,6 @@ while True:
         if workers[w] == 1:
             complete.append(slots[w])
             slots[w] = ""
-
     while i < len(queue):
         step = queue[i]
         i += 1

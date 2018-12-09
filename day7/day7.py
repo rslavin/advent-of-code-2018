@@ -4,7 +4,7 @@ import re
 children = {}
 steps = set()
 for line in sys.stdin:
-    mo = re.search(r"Step (.).*(.) can", line)
+    mo = re.search(r"p (.) m.*(.) c", line)
     if mo.group(1) not in children:
         children[mo.group(1)] = []
     children[mo.group(1)].append(mo.group(2))
